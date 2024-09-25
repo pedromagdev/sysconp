@@ -1,0 +1,93 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       Int    @id @default(autoincrement())
+  uuid     String @default(cuid())
+  email    String @unique
+  username String @unique
+  password String
+
+  bi       String?
+  sex      String?
+  birthDay String?
+
+  status    Boolean @default(false)
+  activated Boolean @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  appoNnitement Appointment[]
+
+  @@map("users")
+}
+
+
+
+model Appointment {
+  id          Int      @id @default(autoincrement())
+  visitTime   DateTime
+  description String?
+  name        String
+  userId      Int
+  user        User     @relation(fields: [userId], references: [id])
+
+  status  AppoitementStatus
+  porpuse Porpuse[]
+
+  contact Conntacts?
+
+  createDate DateTime @default(now())
+  upadatedAt DateTime @updatedAt
+}
+
+model Conntacts {
+  id            Int    @id @default(autoincrement())
+  phone         String
+  optionalPhone String
+  email         String
+  address       String
+
+  appoitement  Appointment @relation(fields: [idAppotement], references: [id], onDelete: Cascade)
+  idAppotement Int         @unique
+}
+
+model Porpuse {
+  id            Int         @id @default(autoincrement())
+  name          String
+  appointmentId Int
+  appointment   Appointment @relation(fields: [appointmentId], references: [id])
+}
+
+model Client {
+  id        Int     @id @default(autoincrement())
+  uuid      String  @default(cuid())
+  email     String  @unique
+  phone     String  @unique
+  status    Boolean @default(false)
+  activated Boolean @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  personId Int @unique
+}
+
+enum AppoitementStatus {
+  attended
+  pendding
+  canceled
+}
