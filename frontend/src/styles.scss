@@ -1,16 +1,17 @@
-/* You can add global styles to this file, and also import other style files */
-
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-
-body {
-    font-family: 'fonte', sans-serif; /* Adicione a fonte que você declarou */
-}
 
 @font-face {
-    font-family: 'fonte'; /* Escolha um nome para a fonte */
-    src: url('./assets/fontes/fonte.otf') format('opentype'); /* Apontar para o local correto */
-    font-weight: normal; /* ou bold, dependendo do estilo da fonte */
-    font-style: normal; /* ou italic */
-  }
-  
+  font-family: 'fonte';
+  src: url('./assets/fontes/fonte.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body { margin: 0; font-family: fonte }
+
+.mat-typography, .mdc-button{
+  font-family:  fonte !important;
+}
+
+
+
