@@ -29,8 +29,12 @@
   
   .login-logo {
     display: flex;
-    justify-content: center;
+    align-items: center;
     margin-bottom: 1.5rem;
+  }
+  
+  .login-logo img {
+    margin-right: 0.5rem; /* Espaço entre o logo e o texto */
   }
   
   .login-input {
@@ -57,5 +61,37 @@
     height: 150px;
     border-radius: 50%;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .texto {
+    font-size: 20pt;
+    color: rgb(8, 8, 185);
+  }
+  
+  /* Media query para telas menores (como em telemóveis) */
+  @media (max-width: 768px) {
+    .login-container {
+      flex-direction: column;
+      justify-content: center; /* Garante que o container esteja centralizado verticalmente */
+      align-items: center; /* Centraliza horizontalmente */
+      width: 65%;
+      max-width: 100%;
+    }
+  
+    .login-avatar {
+      display: none; /* Esconde a avatar em dispositivos móveis */
+    }
+  
+    .login-box {
+      width: 100%; /* Ajusta a largura do login-box para ocupar o espaço total */
+    }
+  
+    .login-logo {
+      justify-content: center; /* Centraliza o logo e o texto horizontalmente */
+    }
+  
+    .texto {
+      text-align: center; /* Centraliza o nome do sistema em telas menores */
+    }
   }
   
