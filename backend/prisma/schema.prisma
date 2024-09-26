@@ -14,80 +14,179 @@ datasource db {
 }
 
 model User {
-  id       Int    @id @default(autoincrement())
-  uuid     String @default(cuid())
-  email    String @unique
-  username String @unique
-  password String
+  id         Int         @id @default(autoincrement())
+  uuid       String      @unique @default(cuid())
+  name       String
+  email      String      @unique
+  password   String
+  permission Permission?
 
-  bi       String?
-  sex      String?
-  birthDay String?
-
-  status    Boolean @default(false)
-  activated Boolean @default(true)
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  appoNnitement Appointment[]
+  appointments Appointments[]
+  createdAt    DateTime        @default(now())
+  updatedAt    DateTime        @updatedAt
 
   @@map("users")
 }
 
+model Permission {
+  id           Int     @id @default(autoincrement())
+  desctription String?
+  code         String  @unique
+  type         Role
+  userId       Int     @unique
+  user         User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-
-model Appointment {
-  id          Int      @id @default(autoincrement())
-  visitTime   DateTime
-  description String?
-  name        String
-  userId      Int
-  user        User     @relation(fields: [userId], references: [id])
-
-  status  AppoitementStatus
-  porpuse Porpuse[]
-
-  contact Conntacts?
-
-  createDate DateTime @default(now())
-  upadatedAt DateTime @updatedAt
-}
-
-model Conntacts {
-  id            Int    @id @default(autoincrement())
-  phone         String
-  optionalPhone String
-  email         String
-  address       String
-
-  appoitement  Appointment @relation(fields: [idAppotement], references: [id], onDelete: Cascade)
-  idAppotement Int         @unique
-}
-
-model Porpuse {
-  id            Int         @id @default(autoincrement())
-  name          String
-  appointmentId Int
-  appointment   Appointment @relation(fields: [appointmentId], references: [id])
+  @@map("permissions")
 }
 
 model Client {
-  id        Int     @id @default(autoincrement())
-  uuid      String  @default(cuid())
-  email     String  @unique
-  phone     String  @unique
-  status    Boolean @default(false)
-  activated Boolean @default(true)
+  id      Int      @id @default(autoincrement())
+  uuid    String   @unique @default(cuid())
+  phone   String
+  optionalPhone   String
+  email   String   @unique
+  address Address?
+
+  annex Annex[]
+  sales Sale[]
+
+  @@map("clients")
+}
+
+model Address {
+  id           Int     @id @default(autoincrement())
+  country      String  @default("Angola")
+  street       String?
+  neighborhood String?
+  municipality String?
+  houseNumber  String?
+  clientId     Int     @unique
+  client       Client  @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  province     String  @default("Luanda")
+
+  @@map("addresses")
+}
+
+model Annex {
+  id       Int    @id @default(autoincrement())
+  name     String
+  pathName String @unique
+  type     String
+
+  userId    Int
+  user      Client   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  @@map("attachments")
+}
+
+model Sale {
+  id   Int    @id @default(autoincrement())
+  uuid String @unique @default(cuid())
+
+  createdAt DateTime @default(now())
+  client    Client   @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  clientId  Int
+
+  propertyId Int
+  property   Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+
+  installments Installments[]
+
+  @@map("sales")
+}
+
+model Installments {
+  id     Int     @id @default(autoincrement())
+  value  Decimal
+  status String
+  saleId Int
+  sale   Sale    @relation(fields: [saleId], references: [id], onDelete: Cascade)
+
+  @@map("installments")
+}
+
+model Project {
+  id          Int     @id @default(autoincrement())
+  name        String
+  description String?
+
+  zone      Zone[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("projects")
+}
+
+model Zone {
+  id           Int     @id @default(autoincrement())
+  street       String?
+  neighborhood String?
+  municipality String?
+
+  projectId Int
+  project   Project    @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  property  Property[]
+
+  @@map("zones")
+}
+
+model DocModel {
+  id     Int    @id @default(autoincrement())
+  text   String
+  body   String
+  footer String
+
+  propertyId Int
+  property   Property @relation(fields: [propertyId], references: [id])
+
+  @@map("docmodels")
+}
+
+model Property {
+  id           Int     @id @default(autoincrement())
+  uuid         String  @unique @default(cuid())
+  sale         Sale[]
+  value        Decimal
+  initValue    Decimal
+  parcel       Decimal
+  description  String?
+  availability Boolean @default(false)
+
+  zoneId  Int
+  project Zone @relation(fields: [zoneId], references: [id], onDelete: Cascade)
+
+  docModel DocModel[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  personId Int @unique
+  @@map("properties")
 }
 
-enum AppoitementStatus {
-  attended
-  pendding
-  canceled
+enum Role {
+  admin
+  normal
+}
+
+model Appointments {
+  id   Int    @id @default(autoincrement())
+  uuid String @unique @default(cuid())
+  name String
+  phone   String
+  optionalPhone   String?
+  email   String
+  bi String? 
+
+  userId Int
+  user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  stutus Boolean @default(false)
+  dateVisit String
+  visitTime String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("appointments")
 }

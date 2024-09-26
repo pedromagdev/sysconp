@@ -1,23 +1,22 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { UserRepository } from 'src/user/repositories';
+import { Injectable } from '@nestjs/common';
+import { UserRepository } from 'src/user/repositories/user.repository';
 
 @Injectable()
 export class UserReadService {
 
     constructor(
         private readonly userRepo: UserRepository
-    ) { }
+    ){}
 
-    async findAll() {
+   async findUserById(id: string){
+        return await this.userRepo.findOne(+id)
+    }
 
-        try {
+    async findUserEmail(email: string){
+        return await this.userRepo.findUserEmail(email)
+    }
 
-            return await this.userRepo.findAll()
-
-        } catch (error) {
-
-            throw new HttpException('Forbidden', HttpStatus.FORBIDDEN);
-            
-        }
+    async findAll(){
+        return await this.userRepo.findAll()
     }
 }

@@ -1,45 +1,17 @@
+import { User } from "../entities/user.entity";
+import { UserCreateProps, UserCreateResult } from "../types";
 
 
 
-
-export interface IUserRepo {
-    create(values: DataCreateUser): Promise<ResultCreateUser>
+export interface IUserRepo{
+    create(values: UserCreateProps): Promise<UserCreateResult>
+    findOne(id: number): Promise<User>
+    findUserEmail(email: string): Promise<User>
     findAll(): Promise<User[]>
+
 }
 
-
-export type DataCreateUser = {
-    username: string
-    email: string
-    password: string
-    // sex: "male" | "female"
-    // bi: string
-    // birthDay: string
-}
-
-export type ResultCreateUser = {
-    id: string
-    username: string
-    email: string
-    password: string
-    // sex: "male" | "female"
-    // bi: string
-    // birthDay: string
-}
-
-
-
-export type User = {
-    id: number
-    uuid: string
-    email: string
-    username: string
-    password: string
-    bi: string | null
-    sex: string | null
-    birthDay: string | null
-    status: boolean
-    activated: boolean
-    createdAt: Date
-    updatedAt: Date
+export type ErrorCreate ={
+    error: boolean
+    type: "conflict" | "forbidden"
 }
