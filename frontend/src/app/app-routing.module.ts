@@ -1,8 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './auth/login/login.component';
 
-const routes: Routes = [{ path: '', component:LoginComponent}, { path: 'sysconp', loadChildren: () => import('./sysconp/sysconp.module').then(m => m.SysconpModule) }];
+const routes: Routes = [
+  { path: '', redirectTo:'login', pathMatch:'full'},
+  { path: '**', redirectTo:'login'},
+  { path: 'sysconp', loadChildren: () => import('./modules/sysconp/sysconp.module').then(m => m.SysconpModule) },
+  { path: 'login', loadChildren: () => import('./modules/auth/auth.module').then(m => m.AuthModule) }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

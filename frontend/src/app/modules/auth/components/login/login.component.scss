@@ -1,5 +1,5 @@
 .login-background {
-    background-image: url('../../../assets/fundo.png');
+    background-image: url('../../../../../assets/fundo.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -8,7 +8,7 @@
     justify-content: center;
     align-items: center;
   }
-  
+
   .login-container {
     display: flex;
     justify-content: space-between;
@@ -20,54 +20,54 @@
     width: 80%;
     max-width: 900px;
   }
-  
+
   .login-box {
     display: flex;
     flex-direction: column;
     width: 50%;
   }
-  
+
   .login-logo {
     display: flex;
     align-items: center;
     margin-bottom: 1.5rem;
   }
-  
+
   .login-logo img {
     margin-right: 0.5rem; /* Espaço entre o logo e o texto */
   }
-  
+
   .login-input {
     width: 100%;
     margin-bottom: 1rem;
   }
-  
+
   .login-button {
     width: 100%;
     height: 3rem;
     font-size: 1.1rem;
     font-weight: bold;
   }
-  
+
   .login-avatar {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 50%;
   }
-  
+
   .login-avatar img {
     width: 150px;
     height: 150px;
     border-radius: 50%;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   }
-  
+
   .texto {
     font-size: 20pt;
     color: rgb(8, 8, 185);
   }
-  
+
   /* Media query para telas menores (como em telemóveis) */
   @media (max-width: 768px) {
     .login-container {
@@ -77,21 +77,20 @@
       width: 65%;
       max-width: 100%;
     }
-  
+
     .login-avatar {
       display: none; /* Esconde a avatar em dispositivos móveis */
     }
-  
+
     .login-box {
       width: 100%; /* Ajusta a largura do login-box para ocupar o espaço total */
     }
-  
+
     .login-logo {
       justify-content: center; /* Centraliza o logo e o texto horizontalmente */
     }
-  
+
     .texto {
       text-align: center; /* Centraliza o nome do sistema em telas menores */
     }
   }
-  
