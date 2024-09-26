@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class SidebarComponent {
 
+  opened = false;
+
+  toggle() {
+    this.opened = !this.opened; // Alterna o estado de aberto e fechado
+  }
 }

@@ -5,6 +5,7 @@ import { LayoutRoutingModule } from './layout-routing.module';
 import { LayoutComponent } from './layout.component';
 import { SidebarComponent } from './component/sidebar/sidebar.component';
 import { HeaderComponent } from './component/header/header.component';
+import { MaterialModule } from '../material/material.module';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { HeaderComponent } from './component/header/header.component';
   ],
   imports: [
     CommonModule,
-    LayoutRoutingModule
+    LayoutRoutingModule,
+    MaterialModule
   ],
 
   exports:[

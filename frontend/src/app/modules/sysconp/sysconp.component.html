@@ -1,4 +1,16 @@
-<app-sidebar></app-sidebar>
 <app-header></app-header>
+<app-sidebar></app-sidebar>
 <p>sysconp works!</p>
 <router-outlet></router-outlet>
+
+<mat-sidenav-container class="example-container">
+    <app-header (toggleSidenav)="sidebar.toggle()"></app-header>
+    <mat-sidenav-content>
+      <app-sidebar #sidebar></app-sidebar>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>
+
+
+
+  
