@@ -14,179 +14,184 @@ datasource db {
 }
 
 model User {
-  id         Int         @id @default(autoincrement())
+  id         Int         @id @default(autoincrement()) @map("cd_usario")
   uuid       String      @unique @default(cuid())
-  name       String
+  name       String       @map("nome")
   email      String      @unique
-  password   String
-  permission Permission?
+  password   String      @map("senha")
+  permission Permission? 
 
   appointments Appointments[]
-  createdAt    DateTime        @default(now())
-  updatedAt    DateTime        @updatedAt
+  createdAt    DateTime        @default(now()) @map("data_criacao")
+  updatedAt    DateTime        @updatedAt @map("data_adapatacao")
 
-  @@map("users")
+  @@map("usuarios")
 }
 
 model Permission {
-  id           Int     @id @default(autoincrement())
-  desctription String?
-  code         String  @unique
-  type         Role
-  userId       Int     @unique
+  id           Int     @id @default(autoincrement()) @map("cd_permissao")
+  desctription String? @map("descricao")
+  code         String  @unique @map("dcodigo_permissao")
+  type         Role @map("tipo_permissao")
+  userId       Int     @unique @map("cd_usuario")
   user         User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  @@map("permissions")
+  @@map("permissoes")
 }
 
 model Client {
-  id      Int      @id @default(autoincrement())
+  id      Int      @id @default(autoincrement()) @unique @map("cd_client")
   uuid    String   @unique @default(cuid())
-  phone   String
-  optionalPhone   String
+  phone   String  @unique @map("telefone")
+  optionalPhone   String @map("optional_telefone")
   email   String   @unique
   address Address?
 
   annex Annex[]
   sales Sale[]
 
-  @@map("clients")
+  @@map("clientes")
 }
 
 model Address {
-  id           Int     @id @default(autoincrement())
-  country      String  @default("Angola")
-  street       String?
-  neighborhood String?
-  municipality String?
-  houseNumber  String?
-  clientId     Int     @unique
-  client       Client  @relation(fields: [clientId], references: [id], onDelete: Cascade)
-  province     String  @default("Luanda")
+  id           Int     @id @default(autoincrement()) @unique @map("cd_enderco")
+  country      String  @default("Angola") @map("pais")
+  street       String? @map("rua")
+  neighborhood String? @map("bairro")
+  municipality String? @map("municipio")
+  houseNumber  String? @map("numero_de_casa")
+  clientId     Int     @unique @map("cd_cliente")
+  client       Client  @relation(fields: [clientId], references: [id], onDelete: Cascade) 
+  province     String  @default("Luanda") @map("provincia")
 
-  @@map("addresses")
+  @@map("endereco")
 }
 
 model Annex {
-  id       Int    @id @default(autoincrement())
-  name     String
-  pathName String @unique
-  type     String
+  id       Int    @id @default(autoincrement()) @map("cd_anexo")
+  name     String @unique @map("nome")
+  pathName String @unique @map("telefone")
+  type     String @unique @map("tipo")
 
-  userId    Int
+  userId    Int @unique @map("cd_usuario")
   user      Client   @relation(fields: [userId], references: [id], onDelete: Cascade)
-  createdAt DateTime @default(now())
+  createdAt DateTime @default(now())  @map("data_criacao")
 
-  @@map("attachments")
+  @@map("anexos")
 }
 
 model Sale {
-  id   Int    @id @default(autoincrement())
+  id   Int    @id @default(autoincrement()) @map("cd_venda")
   uuid String @unique @default(cuid())
 
-  createdAt DateTime @default(now())
+  createdAt DateTime @default(now()) @map("data_criacao")
   client    Client   @relation(fields: [clientId], references: [id], onDelete: Cascade)
-  clientId  Int
+  clientId  Int @map("cd_cliente")
 
-  propertyId Int
+  propertyId Int @unique @map("cd_imovel")
   property   Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
 
   installments Installments[]
 
-  @@map("sales")
+  @@map("vendas")
 }
 
 model Installments {
   id     Int     @id @default(autoincrement())
-  value  Decimal
-  status String
-  saleId Int
+  value  Decimal @map("valor")
+  status String @map("estatus")
+  saleId Int @map("cd_venda")
   sale   Sale    @relation(fields: [saleId], references: [id], onDelete: Cascade)
 
-  @@map("installments")
+  @@map("parcelas")
 }
 
 model Project {
-  id          Int     @id @default(autoincrement())
-  name        String
-  description String?
+  id          Int     @id @default(autoincrement()) @map("cd_projecto")
+  name        String @map("nome")
+  description String? @map("descricao")
 
   zone      Zone[]
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now()) @map("data_criacao")
+  updatedAt DateTime @updatedAt @map("data_adapatacao")
 
-  @@map("projects")
+  @@map("projectos")
 }
 
 model Zone {
-  id           Int     @id @default(autoincrement())
-  street       String?
-  neighborhood String?
-  municipality String?
+  id           Int     @id @default(autoincrement()) @map("cd_zona")
+  street       String? @map("rua")
+  neighborhood String? @map("bairro")
+  municipality String? @map("municipio")
 
-  projectId Int
+  projectId Int  @map("cd_projecto")
   project   Project    @relation(fields: [projectId], references: [id], onDelete: Cascade)
   property  Property[]
 
-  @@map("zones")
+  @@map("zonas")
 }
 
 model DocModel {
-  id     Int    @id @default(autoincrement())
-  text   String
-  body   String
-  footer String
+  id     Int    @id @default(autoincrement()) @map("cd_doc_modelo")
+  text   String @map("texto")
+  body   String @map("corpo")
+  footer String @map("rodape")
 
-  propertyId Int
+  propertyId Int @unique @map("imovel_id")
   property   Property @relation(fields: [propertyId], references: [id])
 
-  @@map("docmodels")
+  @@map("doc_modelos")
 }
 
 model Property {
-  id           Int     @id @default(autoincrement())
+  id           Int     @id @default(autoincrement()) @map("cd_imovel")
   uuid         String  @unique @default(cuid())
   sale         Sale[]
-  value        Decimal
-  initValue    Decimal
-  parcel       Decimal
+  value        Decimal @map("valor")
+  initValue    Decimal @map("valor_de_entrada")
+  parcel       Decimal @map("parcela")
   description  String?
   availability Boolean @default(false)
 
-  zoneId  Int
+  zoneId  Int @map("zone_id")
   project Zone @relation(fields: [zoneId], references: [id], onDelete: Cascade)
 
   docModel DocModel[]
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now()) @map("data_criacao")
+  updatedAt DateTime @updatedAt @map("data_adaptacao")
 
-  @@map("properties")
+  @@map("imoveis")
 }
 
 enum Role {
-  admin
-  normal
+  boss_rh @map("chefia.rh")
+  analist @map("analista")
+  concelhe_jd @map("conselho_juridico")
+  admin @map("administrador")
+  boss_dcc @map("chefia.dcc")
+  analist_dcc @map("analista.dcc")
+  employee @map("normal")
 }
 
 model Appointments {
-  id   Int    @id @default(autoincrement())
+  id   Int    @id @default(autoincrement()) @map("cd_agendamentos")
   uuid String @unique @default(cuid())
-  name String
-  phone   String
-  optionalPhone   String?
+  name String @map("nome")
+  phone   String @map("telefone")
+  optionalPhone   String? @map("numero_opcional")
   email   String
-  bi String? 
+  bi String? @map("bilhete_identidade")
 
-  userId Int
+  userId Int @map("usuario_id")
   user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  stutus Boolean @default(false)
-  dateVisit String
-  visitTime String
+  stutus Boolean @default(false) @map("estato")
+  dateVisit String @map("data_visita")
+  visitTime String @map("hora_visita")
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now()) @map("data_criacao")
+  updatedAt DateTime @updatedAt @map("data_adaptacao")
 
-  @@map("appointments")
+  @@map("agendamentos")
 }
