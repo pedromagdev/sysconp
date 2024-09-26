@@ -34,7 +34,7 @@
   }
 
   .login-logo img {
-    margin-right: 0.5rem; /* Espaço entre o logo e o texto */
+    margin-right: 0.5rem;
   }
 
   .login-input {
@@ -47,6 +47,7 @@
     height: 3rem;
     font-size: 1.1rem;
     font-weight: bold;
+    background-color: #0065ee !important;
   }
 
   .login-avatar {
@@ -75,25 +76,25 @@
   @media (max-width: 768px) {
     .login-container {
       flex-direction: column;
-      justify-content: center; /* Garante que o container esteja centralizado verticalmente */
-      align-items: center; /* Centraliza horizontalmente */
+      justify-content: center;
+      align-items: center;
       width: 65%;
       max-width: 100%;
     }
 
     .login-avatar {
-      display: none; /* Esconde a avatar em dispositivos móveis */
+      display: none;
     }
 
     .login-box {
-      width: 100%; /* Ajusta a largura do login-box para ocupar o espaço total */
+      width: 100%;
     }
 
     .login-logo {
-      justify-content: center; /* Centraliza o logo e o texto horizontalmente */
+      justify-content: center;
     }
 
     .texto {
-      text-align: center; /* Centraliza o nome do sistema em telas menores */
-    }
+      text-align: center;
   }
+}
