@@ -183,7 +183,7 @@ model Appointments {
   email   String
   bi String? @map("bilhete_identidade")
 
-  userId Int @map("usuario_id")
+  userId Int @map("cd_usuario")
   user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   stutus Boolean @default(false) @map("estato")
