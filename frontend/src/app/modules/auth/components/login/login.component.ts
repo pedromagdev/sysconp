@@ -41,7 +41,7 @@ export class LoginComponent {
     };
   
     // Verifica se o e-mail e a senha são corretos
-    if (logar.username === 'administrator@pedromag' && logar.password === 'temp.12345') {
+    if (logar.username === 'admin@pedromag.com' && logar.password === 'admin') {
       // Redireciona para a rota desejada
       this.router.navigate(['/sysconp']);
     } else {
