@@ -20,6 +20,7 @@ export class SidebarComponent {
     { icon: 'chat', label: 'Chat' },
     { icon: 'email', label: 'Email' },
   ];
+  
 
   // Método para alternar o estado do sidebar
   toggle() {

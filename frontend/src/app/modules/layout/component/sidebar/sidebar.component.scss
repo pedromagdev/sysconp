@@ -1,85 +1,72 @@
 .sidenav-container {
-    height: 100%;  /* Ajustar a altura */
+    height: 100%;
     display: flex;
   }
   
   mat-sidenav {
-    width: 250px;  /* Largura padrão */
-    background-color: #1e3a8a;  /* Cor de fundo azul */
+    width: 250px;
+    background-color: #1e3a8a;
     color: white;
-    transition: width 0.3s;  /* Adiciona transição suave */
+    transition: width 0.3s;
   }
   
   .sidenav-container.collapsed mat-sidenav {
-    width: 80px; /* Largura quando colapsado */
+    width: 80px;
   }
   
-  .header-left {
+  /* Dividindo os ícones e descrições lado a lado */
+  .menu-container {
     display: flex;
-    align-items: center;
-    padding: 16px;
+    flex-direction: row; /* Manter ícones e descrições lado a lado */
+    height: auto; /* Garante que as duas colunas fiquem com a mesma altura */
   }
   
-  .logo {
-    height: 40px; /* Ajuste conforme necessário */
-    margin-right: 8px;
+  .menu-icons {
+    width: 60px; /* Largura da parte azul */
+    background-color: #1e3a8a;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
   
-  .menu-icons, .menu-descriptions {
-    transition: opacity 0.3s ease; /* Suavizar transição */
+  .menu-descriptions {
+    background-color: white; /* Parte branca para as descrições */
+    color: black;
+    width: calc(100% - 60px); /* Ocupa o restante do espaço, menos a largura dos ícones */
+    padding-left: 10px; /* Espaçamento para as descrições */
+    transition: opacity 0.3s ease;
   }
   
   .menu-descriptions.hidden {
-    opacity: 0; /* Ocultar descrições */
+    opacity: 0;
     visibility: hidden;
   }
   
+  .menu-descriptions.visible {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  /* Ajustes para listas */
+  .mat-list-item {
+    height: 48px;
+    padding: 0 16px;
+    cursor: pointer;
+  }
+  
+  .mat-list-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .mat-icon {
+    color: white;
+  }
+  
+  /* Cabeçalho dos apps */
   .apps-header {
     color: rgba(255, 255, 255, 0.7);
     padding: 16px;
     font-size: 14px;
     text-transform: uppercase;
-  }
-  
-  .menu-text {
-    font-size: 16px;
-    margin-left: 10px; /* Espaço entre o ícone e o texto */
-  }
-  
-  mat-list-item {
-    color: white;
-    height: 48px;
-    padding: 0 16px;
-    cursor: pointer;
-  
-    mat-icon {
-      color: white;
-      margin-right: 10px;
-    }
-  
-    &:hover {
-      background-color: rgba(255, 255, 255, 0.1);  /* Efeito hover */
-    }
-  }
-  
-  mat-sidenav-content {
-    padding: 16px;
-  }
-
-  .menu-descriptions {
-    transition: opacity 0.3s ease, visibility 0.3s ease, height 0.3s ease; /* Adicionando height */
-    margin-left: 16px; /* Espaço entre os ícones e as descrições */
-  }
-  
-  .menu-descriptions.hidden {
-    opacity: 0; /* Ocultar descrições */
-    visibility: hidden;
-    height: 0; /* Não ocupar espaço */
-  }
-  
-  .menu-descriptions.visible {
-    opacity: 1; /* Mostrar descrições */
-    visibility: visible;
-    height: auto; /* Ocupa espaço normalmente */
   }
   
