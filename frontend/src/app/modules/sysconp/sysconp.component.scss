@@ -1,24 +1,33 @@
 /* Estilo do contêiner principal para ocupar a altura total da tela */
-.main-container {
+  .main-container {
     height: 100vh; /* Define a altura do contêiner para 100% da visualização vertical */
     display: flex;
   }
   
   /* Sidenav deve ocupar a altura total e ter um tamanho apropriado */
   .sidenav {
-    width: 240px; /* Define a largura do sidebar */
-    background-color: #1e3a63; /* Exemplo de cor de fundo */
+    width: auto; /* Define a largura do sidebar */
     color: #fff;
-    border-right: 1px solid #ddd; /* Se quiser uma borda no lado direito */
     height: 100%; /* Garante que a altura é 100% */
   }
   
   /* Estilo para o conteúdo principal */
-  .sidenav-content {
+  mat-sidenav-content{
     flex-grow: 1; /* Faz o conteúdo expandir para ocupar o espaço restante */
     display: flex;
     flex-direction: column;
     overflow: hidden; /* Evita barras de rolagem desnecessárias */
+    margin-left: auto!important;
+    border: none;
+    width: auto;
+  }
+
+  mat-sidenav-content { 
+    margin-left: 300px;
+  
+    &.collapsed { 
+      margin-left: 55px!important; // Margem quando colapsado
+    }
   }
   
   /* Adicionando margem inferior para garantir que o conteúdo não fique cortado */
@@ -34,3 +43,10 @@
     z-index: 1000;
   }
   
+  .mat-drawer-side{
+    border-right: none!important;
+  }
+
+  router-outlet{
+    border-top-left-radius: 20px;
+  }

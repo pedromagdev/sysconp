@@ -22,7 +22,7 @@
       <div class="menu-icons">
         <mat-nav-list>
           <mat-list-item>
-            <mat-icon (click)="toggle()" aria-label="Toggle Sidebar">menu</mat-icon>
+            <mat-icon (click)="toggle()"  aria-label="Toggle Sidebar">menu</mat-icon>
           </mat-list-item>
           <mat-list-item *ngFor="let item of menuItems">
             <mat-icon>{{ item.icon }}</mat-icon>
@@ -32,7 +32,15 @@
 
       <!-- Div com descrições -->
       <div class="menu-descriptions" [ngClass]="{'hidden': isCollapsed, 'visible': !isCollapsed}">
-        
+        <div class="company">
+          <div>
+            <div class="company-image"></div>
+            <!-- <img src="../../../../../assets/sy.png" class="logo" alt="Logo"> -->
+          </div>
+          <div>
+            <span class="company-name">PEDROMAG</span>
+          </div>
+        </div>
         <mat-nav-list>
           <mat-list-item *ngFor="let item of menuItems">
             <span class="menu-text">{{ item.label }}</span>
@@ -67,7 +75,7 @@
   </mat-sidenav> 
 
   <!-- Conteúdo principal -->
-  <mat-sidenav-content>
+  <mat-sidenav-content [class.collapsed]="isCollapsed">
     <ng-content></ng-content>
   </mat-sidenav-content>
 </mat-sidenav-container>
