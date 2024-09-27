@@ -7,6 +7,7 @@ import { DatabaseModule } from './database/database.module';
 import { AppointmentsModule } from './appointments/appointments.module';
 import { ConfigModule } from '@nestjs/config';
 import { SmsModule } from './sms/sms.module';
+import { SmsService } from './sms/sms.service';
 
 @Module({
   imports: [
@@ -15,6 +16,6 @@ import { SmsModule } from './sms/sms.module';
     }),
     UserModule, AuthModule, DatabaseModule, AppointmentsModule, SmsModule],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, SmsService],
 })
 export class AppModule {}

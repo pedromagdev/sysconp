@@ -9,18 +9,18 @@ export class SmsService {
         const { SinchClient } = require('@sinch/sdk-core');
 
         const sinchClient = new SinchClient({
-            projectId: "4798acd0-47cd-42dd-aa16-94b5bd70b758",
-            keyId: "aeafc352-dba1-4602-8668-8ed9f89f3360",
-            keySecret: "a.sulxD.r9y3d8Vb9yzNyFR8rO"
+            projectId: "f6fe8355-dc0b-4da4-9d7c-43d93d88fa02",
+            keyId: "5116d930-adae-4a54-9503-bbbb4a9b4688",
+            keySecret: "uQsemeYpgohE5s2qrQln8.v9Id"
         });
         
         const response = await sinchClient.sms.batches.send({
             sendSMSRequestBody: {
                 to: [
-                    "+244956433899"
+                    " +244930381137"
                 ],
                 from: "Pedromag",
-                body: "Bem vindo a Pedromag, mensagem enviada com api"
+                body: "A sua visita esta marcada para o dia 15 de setembro!"
             }
         });
         console.log(JSON.stringify(response));
