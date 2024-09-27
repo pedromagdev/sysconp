@@ -1,10 +1,51 @@
-<mat-sidenav #sidenav mode="side" [(opened)]="opened" class="sidenav">
-    <mat-nav-list>
-      <a mat-list-item href="#">Dashboard</a>
-      <a mat-list-item href="#">Settings</a>
-      <a mat-list-item href="#">Profile</a>
-      <a mat-list-item href="#">Logout</a>
-    </mat-nav-list>
-    <h1>side bar</h1>
-</mat-sidenav>
-  
+<mat-sidenav-container class="sidenav-container" [ngClass]="{'collapsed': isCollapsed}">
+  <mat-sidenav #sidebar mode="side" opened>
+    <div class="header-left">
+      <button mat-icon-button (click)="toggle()" aria-label="Toggle Sidebar">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <img src="../../../assets/logo-pedromag.png" class="logo" alt="Logo">
+      <span>PEDROMAG</span>
+    </div>
+
+    <div class="menu-icons">
+      <mat-nav-list>
+        <!-- Menu com ícones -->
+        <mat-list-item *ngFor="let item of menuItems">
+          <mat-icon>{{ item.icon }}</mat-icon>
+        </mat-list-item>
+      </mat-nav-list>
+    </div>
+
+    <div class="menu-descriptions" [ngClass]="{'hidden': isCollapsed, 'visible': !isCollapsed}">
+      <mat-nav-list>
+        <!-- Descrições dos menus -->
+        <mat-list-item *ngFor="let item of menuItems">
+          <span class="menu-text">{{ item.label }}</span>
+        </mat-list-item>
+      </mat-nav-list>
+    </div>
+
+    <h3 class="apps-header">APPS</h3>
+    <div class="menu-icons">
+      <mat-nav-list>
+        <mat-list-item *ngFor="let app of appItems">
+          <mat-icon>{{ app.icon }}</mat-icon>
+        </mat-list-item>
+      </mat-nav-list>
+    </div>
+
+    <div class="menu-descriptions" [ngClass]="{'hidden': isCollapsed, 'visible': !isCollapsed}">
+      <mat-nav-list>
+        <mat-list-item *ngFor="let app of appItems">
+          <span class="menu-text">{{ app.label }}</span>
+        </mat-list-item>
+      </mat-nav-list>
+    </div>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <!-- Conteúdo principal vai aqui -->
+    <ng-content></ng-content>
+  </mat-sidenav-content>
+</mat-sidenav-container>

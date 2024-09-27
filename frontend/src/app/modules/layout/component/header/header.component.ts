@@ -8,11 +8,9 @@ import { Component, EventEmitter, Output } from '@angular/core';
 export class HeaderComponent {
 
 
-  @Output() toggleSidenav = new EventEmitter<void>();
+  @Output() toggleSidebar = new EventEmitter<void>();
 
-  toggleSidebar() {
-    this.toggleSidenav.emit(); // Emitir o evento para o componente pai
-    console.log("ola");
+  toggle() {
+    this.toggleSidebar.emit(); // Emite o evento para o componente pai
   }
-
 }
