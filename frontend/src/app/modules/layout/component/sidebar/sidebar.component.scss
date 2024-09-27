@@ -11,14 +11,14 @@
   }
   
   .sidenav-container.collapsed mat-sidenav {
-    width: 80px;
+    width: 55px;
   }
   
   /* Dividindo os ícones e descrições lado a lado */
   .menu-container {
     display: flex;
     flex-direction: row; /* Manter ícones e descrições lado a lado */
-    height: auto; /* Garante que as duas colunas fiquem com a mesma altura */
+    height: 100%; /* aplica uma altura de 100% para ambas as colunas */
   }
   
   .menu-icons {
@@ -26,7 +26,7 @@
     background-color: #1e3a8a;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start; // colocar os icones no topo do elemento
   }
   
   .menu-descriptions {

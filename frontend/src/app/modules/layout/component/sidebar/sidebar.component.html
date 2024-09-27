@@ -1,24 +1,29 @@
 <mat-sidenav-container class="sidenav-container" [ngClass]="{'collapsed': isCollapsed}">
   <mat-sidenav #sidebar mode="side" opened>
-    <div class="header-left">
+
+    <!-- Header comentado para não afetar o background dos elementos separados -->
+    <!-- <div class="header-left">
       <button mat-icon-button (click)="toggle()" aria-label="Toggle Sidebar">
         <mat-icon>menu</mat-icon>
       </button>
-      <!--<div>
+      <div>
         <div>
           <img src="https://britz.mcmaster.ca/images/placeholder.png/download" class="logo" alt="Logo">
         </div>
         <div>
           <span>PEDROMAG</span>
         </div>
-      </div>-->
-    </div>
+      </div>
+    </div> -->
 
     <!-- Primeira sessão com os itens do menu -->
     <div class="menu-container">
       <!-- Div com ícones -->
       <div class="menu-icons">
         <mat-nav-list>
+          <mat-list-item>
+            <mat-icon (click)="toggle()" aria-label="Toggle Sidebar">menu</mat-icon>
+          </mat-list-item>
           <mat-list-item *ngFor="let item of menuItems">
             <mat-icon>{{ item.icon }}</mat-icon>
           </mat-list-item>
@@ -27,6 +32,7 @@
 
       <!-- Div com descrições -->
       <div class="menu-descriptions" [ngClass]="{'hidden': isCollapsed, 'visible': !isCollapsed}">
+        
         <mat-nav-list>
           <mat-list-item *ngFor="let item of menuItems">
             <span class="menu-text">{{ item.label }}</span>
@@ -38,9 +44,9 @@
     <!-- Cabeçalho para Apps -->
     <!--<h3 class="apps-header">APPS</h3>-->
     
-    <!-- Segunda sessão com os apps -->
+    <!-- Segunda sessão com os apps
     <div class="menu-container">
-      <!-- Div com ícones -->
+      Div com ícones
       <div class="menu-icons">
         <mat-nav-list>
           <mat-list-item *ngFor="let app of appItems">
@@ -49,7 +55,7 @@
         </mat-nav-list>
       </div>
 
-      <!-- Div com descrições -->
+      Div com descrições 
       <div class="menu-descriptions" [ngClass]="{'hidden': isCollapsed, 'visible': !isCollapsed}">
         <mat-nav-list>
           <mat-list-item *ngFor="let app of appItems">
@@ -57,8 +63,8 @@
           </mat-list-item>
         </mat-nav-list>
       </div>
-    </div>
-  </mat-sidenav>
+    </div>-->
+  </mat-sidenav> 
 
   <!-- Conteúdo principal -->
   <mat-sidenav-content>
