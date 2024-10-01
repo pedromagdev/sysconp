@@ -1,0 +1,36 @@
+  mat-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 16px;
+    background-color: #fff;
+  }
+  
+  .header-left {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo {
+    width: 40px;
+    height: auto;
+    margin-right: 10px;
+  }
+  
+  .example-spacer {
+    flex: 1;
+  }
+  
+  .flag-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+  }
+  
+  .avatar-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    margin-left: 10px;
+  }
+  

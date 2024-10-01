@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./sysconp.component.scss']
 })
 export class SysconpComponent {
+  isSidebarCollapsed = false;
 
+  toggleSidebar() {
+    this.isSidebarCollapsed = !this.isSidebarCollapsed;
+  }
 }

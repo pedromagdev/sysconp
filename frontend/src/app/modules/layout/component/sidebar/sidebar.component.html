@@ -1,0 +1,81 @@
+<mat-sidenav-container class="sidenav-container" [ngClass]="{'collapsed': isCollapsed}">
+  <mat-sidenav #sidebar mode="side" opened>
+
+    <!-- Header comentado para não afetar o background dos elementos separados -->
+    <!-- <div class="header-left">
+      <button mat-icon-button (click)="toggle()" aria-label="Toggle Sidebar">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <div>
+        <div>
+          <img src="https://britz.mcmaster.ca/images/placeholder.png/download" class="logo" alt="Logo">
+        </div>
+        <div>
+          <span>PEDROMAG</span>
+        </div>
+      </div>
+    </div> -->
+
+    <!-- Primeira sessão com os itens do menu -->
+    <div class="menu-container">
+      <!-- Div com ícones -->
+      <div class="menu-icons">
+        <mat-nav-list>
+          <mat-list-item>
+            <mat-icon (click)="toggle()"  aria-label="Toggle Sidebar">menu</mat-icon>
+          </mat-list-item>
+          <mat-list-item *ngFor="let item of menuItems">
+            <mat-icon>{{ item.icon }}</mat-icon>
+          </mat-list-item>
+        </mat-nav-list>
+      </div>
+
+      <!-- Div com descrições -->
+      <div class="menu-descriptions" [ngClass]="{'hidden': isCollapsed, 'visible': !isCollapsed}">
+        <div class="company">
+          <div>
+            <div class="company-image"></div>
+            <!-- <img src="../../../../../assets/sy.png" class="logo" alt="Logo"> -->
+          </div>
+          <div>
+            <span class="company-name">PEDROMAG</span>
+          </div>
+        </div>
+        <mat-nav-list>
+          <mat-list-item *ngFor="let item of menuItems">
+            <span class="menu-text">{{ item.label }}</span>
+          </mat-list-item>
+        </mat-nav-list>
+      </div>
+    </div>
+
+    <!-- Cabeçalho para Apps -->
+    <!--<h3 class="apps-header">APPS</h3>-->
+    
+    <!-- Segunda sessão com os apps
+    <div class="menu-container">
+      Div com ícones
+      <div class="menu-icons">
+        <mat-nav-list>
+          <mat-list-item *ngFor="let app of appItems">
+            <mat-icon>{{ app.icon }}</mat-icon>
+          </mat-list-item>
+        </mat-nav-list>
+      </div>
+
+      Div com descrições 
+      <div class="menu-descriptions" [ngClass]="{'hidden': isCollapsed, 'visible': !isCollapsed}">
+        <mat-nav-list>
+          <mat-list-item *ngFor="let app of appItems">
+            <span class="menu-text">{{ app.label }}</span>
+          </mat-list-item>
+        </mat-nav-list>
+      </div>
+    </div>-->
+  </mat-sidenav> 
+
+  <!-- Conteúdo principal -->
+  <mat-sidenav-content [class.collapsed]="isCollapsed">
+    <ng-content></ng-content>
+  </mat-sidenav-content>
+</mat-sidenav-container>
