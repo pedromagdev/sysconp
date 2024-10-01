@@ -3,8 +3,6 @@ import { Injectable } from '@nestjs/common';
 @Injectable()
 export class SmsService {
 
-
-
     async sendMensage(){
         const { SinchClient } = require('@sinch/sdk-core');
 
@@ -19,7 +17,7 @@ export class SmsService {
                 to: [
                     " +244930381137"
                 ],
-                from: "Pedromag",
+                from: "PEDROMAG LDA",
                 body: "A sua visita esta marcada para o dia 15 de setembro!"
             }
         });

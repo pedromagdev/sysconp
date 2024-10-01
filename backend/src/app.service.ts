@@ -7,7 +7,9 @@ export class AppService {
     private readonly smsService: SmsService
   ){}
   async getHello(){
-   await this.smsService.sendMensage()
-    return 'Hello World!';
+    return {
+      message:"bem-vindo",
+
+    };
   }
 }

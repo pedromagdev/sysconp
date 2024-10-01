@@ -7,11 +7,11 @@ import { UserReadService } from '../user-read/user-read.service';
 export class UserCreateService {
     constructor(
         private readonly userRepo: UserRepository,
-        private readonly userReadService: UserReadService,
     ){}
 
     async create(createUserDto: CreateUserDto){
-        const userExisting =  await this.userReadService.findUserEmail(createUserDto.email);
+        
+        const userExisting =  await this.userRepo.findUserEmail(createUserDto.email);
 
         if(userExisting) throw new ConflictException("Este usuario já foi criado")
 

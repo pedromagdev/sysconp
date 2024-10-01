@@ -1,0 +1,2 @@
+export const JWT_REFRESH_TOKEN_KEY ="RvEBN5kvEmdGTMFYenUzKACoLPdWtGVvh7S88dXPQ8aDNKG7G6y9kKtOZac74Ra6D+QcWR+hRtWJgSxDzsELGC14mW/okA=="
+export const JWT_SECRET_KEY="Thz4rq+lUSQzU4TxJulHiJgwb1XD7noAcf0Zrqj/hOUWDifklFIhPy01E4/0QcsxwyUY+vCAaPbJNurYj+Od8yCDcJ3bxQ=="

@@ -22,7 +22,7 @@ export class AppointmentsCreateService {
 
         const newUser = await this.appointmentsRepo.create(values, user.id)
         
-        this.smsService.sendMensage()
+        // this.smsService.sendMensage()
         return newUser
         
     }
